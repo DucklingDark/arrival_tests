@@ -1,5 +1,3 @@
-#include <stdint.h>
-#include <stdlib.h>
 #define ADC_MEASURES_CNT	32.0		// Defined variable for number of measurements
 
 /* 
