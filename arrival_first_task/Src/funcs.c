@@ -26,7 +26,7 @@ uint8_t is_not_processed(void){
 	Function with parsing RX UART bytes
 */
 void uart_routine(void){
-	while (is_not_processed() != 0){ 	// Check if there is any data need to process
+	if (is_not_processed() != 0){ 	// Check if there is any data need to process
 		n_byte = rx_buffer[processed];	// Take a new byte
 
 		switch (state){					// State machine
