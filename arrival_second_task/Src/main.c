@@ -17,8 +17,8 @@ TIM_HandleTypeDef htim6;            // htim6 is a basic timer structure that sto
                                     // In this case, the frequency will be 10 kHz, since the timer frequency is configured at 30 khz.  
                                     // 30000 hz / 3 = 10000 hz
 
-uint32_t adc_measurement;           // Temp variable for ADC measurement
-uint32_t adc_result;                // Variable for result of the calculating the average value of ADC meashures
+uint16_t adc_measurement;           // Temp variable for ADC measurement
+uint16_t adc_result;                // Variable for result of the calculating the average value of ADC meashures
 myAdc_t myAdc;                      // Variable for ADC structure
 myPort_t myPort;                    // Variable for PORT structure
 
@@ -55,12 +55,12 @@ int main(void)
 		  myPort.pin2 ^= 1; // Toggle pin2
 	  }
 
-	  if (ticks_count % ADC_CLOCK_CNT == 0){  // If the remainder of dividing the number of timer ticks by 100 is 0 (for 100 Hz)
-		  adc_measurement = get_adc_measure();      // Call the abstract function that return the ADC measurement
-		  add_adc_measure(&myAdc, adc_measurement); // Add the ADC measurement to myAdc varible
+	  if (ticks_count % ADC_CLOCK_CNT == 0){          // If the remainder of dividing the number of timer ticks by 100 is 0 (for 100 Hz)
+		  adc_measurment = get_adc_measure();           // Call the abstract function that return the ADC measurement
+		  add_adc_measurement(&myAdc, adc_measurement); // Add the ADC measurement to myAdc varible
 
-		  if (myAdc.measuremnts_count == ADC_MEASURES_CNT){     // Check if count of ticks (measures) equal 32
-			  adc_result = calculate_adc_measurements(&myAdc);    // The result is stored in a variable adc_result
+		  if (myAdc.measurements_count == ADC_MEASUREMENTS_CNT){  // Check if count of ticks (measures) equal 32
+			  adc_result = calculate_adc_measurements(&myAdc);      // The result is stored in a variable adc_result
 		  }
 
       ticks_count = 0; // Reset ticsk count
